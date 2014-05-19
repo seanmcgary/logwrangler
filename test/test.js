@@ -2,7 +2,18 @@ var fancyLog = require('../index');
 
 
 var logger = fancyLog.create({
-	level: fancyLog.levels.DEBUG
+	level: fancyLog.levels.DEBUG,
+	outputs: {
+		custom: {
+			enabled: true,
+			handler: function(){
+				console.log("CUSTOM");
+			}
+		},
+		console: {
+			enabled: true
+		}
+	}
 });
 
 logger.log({
@@ -11,7 +22,7 @@ logger.log({
 	ns: 'api',
 	ident: '123456',
 	message: 'some message',
-	data: { key: 'some value' }
+	data: { key: 'some value' },
 });
 
 logger.log({
