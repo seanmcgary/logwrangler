@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/seanmcgary/logWrangler.git"
+    "url": "https://github.com/seanmcgary/logwrangler.git"
   },
   "keywords": [
     "fancy",
