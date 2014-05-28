@@ -3,17 +3,10 @@ var fancyLog = require('../index');
 
 var logger = fancyLog.create({
 	level: fancyLog.levels.DEBUG,
-	outputs: {
-		custom: {
-			enabled: true,
-			handler: function(){
-				console.log("CUSTOM");
-			}
-		},
-		console: {
-			enabled: true
-		}
-	}
+});
+
+logger.use(function(options, data){
+	console.log(arguments);
 });
 
 logger.log({

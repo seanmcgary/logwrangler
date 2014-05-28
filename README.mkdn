@@ -27,28 +27,24 @@ logger.log({
 ```
 var logger = fancyLog.create({
 	level: fancyLog.levels.DEBUG, // default level to log
-	outputs: {
-		custom: {
-			enabled: true,
-			handler: function(options, data){
-				/*
-					options = {
-						level: <default log level, string>
-					};
+});
 
-					data = {
-						level: <log level>,
-						ns: <namespace, string>,
-						ident: <custom identifier, string>,
-						message: <message, string>,
-						data: <custom data, object>
-					};
-				*/
-				
-				// do something with your data
-			}
-		}
-	}
+logger.use(function(options, data){
+	/*
+		options = {
+			level: <default log level, string>
+		};
+
+		data = {
+			level: <log level>,
+			ns: <namespace, string>,
+			ident: <custom identifier, string>,
+			message: <message, string>,
+			data: <custom data, object>
+		};
+	*/
+	
+	// do something with your data
 });
 
 ```
