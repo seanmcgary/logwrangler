@@ -6,7 +6,7 @@ var logger = fancyLog.create({
 });
 
 logger.use(function(options, data){
-	console.log(arguments);
+	//console.log(arguments);
 });
 
 logger.log({
@@ -41,5 +41,13 @@ logger.log({
 	ident: '123456',
 	message: 'some message',
 	data: { key: 'some value' }
+});
+
+logger.log({
+	level: logger.levels.DEBUG,
+	ns: 'api',
+	ident: '123456',
+	message: 'testing error',
+	data: new Error('Im an error object')
 });
 
