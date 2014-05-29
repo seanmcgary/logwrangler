@@ -51,3 +51,13 @@ logger.log({
 	data: new Error('Im an error object')
 });
 
+logger.log({
+	level: logger.levels.ERROR,
+	ns: 'api',
+	ident: '123456',
+	message: 'testing error',
+	data: {
+		error: new Error('Im an error object')
+	}
+});
+
