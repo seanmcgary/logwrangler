@@ -1,1 +1,1 @@
-module.exports = require('./lib/fancyLog');
+module.exports = require('./lib/logwrangler');

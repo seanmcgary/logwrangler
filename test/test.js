@@ -9,6 +9,8 @@ logger.use(function(options, data){
 	//console.log(arguments);
 });
 
+logger.useModule('myCoolMod', {});
+
 logger.log({
 	level: logger.levels.INFO,
 	type: logger.types.SUCCESS,
@@ -60,4 +62,5 @@ logger.log({
 		error: new Error('Im an error object')
 	}
 });
+
 
