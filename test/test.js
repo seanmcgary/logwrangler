@@ -1,12 +1,6 @@
-var fancyLog = require('../index');
-
-
-var logger = fancyLog.create({
-	level: fancyLog.levels.DEBUG,
-});
-
-logger.use(function(options, data){
-	//console.log(arguments);
+var logwrangler = require('../index');
+var logger = logwrangler.create({
+	level: logwrangler.levels.DEBUG,
 });
 
 logger.useModule('myCoolMod', {});
@@ -57,10 +51,32 @@ logger.log({
 	level: logger.levels.ERROR,
 	ns: 'api',
 	ident: '123456',
+	location: 'some-location',
 	message: 'testing error',
 	data: {
 		error: new Error('Im an error object')
 	}
+});
+
+logger.setOverrides({ 
+	ns: 'some default ns',
+	level: logger.levels.INFO,
+	location: 'datacenter-1'
+});
+logger.log({
+	message: 'test'
+});
+
+logger.use(function(options, data){
+	console.log(data);
+});
+
+var copy = logger.copy();
+copy.log({
+	message: 'copy'
+});
+logger.log({
+	message: 'original'
 });
 
 
