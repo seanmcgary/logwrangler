@@ -68,7 +68,9 @@ logger.log({
 });
 
 logger.use(function(options, data){
+	console.log('------------------------\ncustom handler')
 	console.log(data);
+	console.log('------------------------')
 });
 
 var copy = logger.copy();
