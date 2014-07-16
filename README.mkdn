@@ -22,27 +22,129 @@ logger.log({
 });
 ```
 
-### Custom logging handler
+### Options
 
+#### ```level <string>``` 
+
+Specifies the level of the log. Levels can be found in ```logwrangler``` object or in the ```logger``` instance object.
+
+Available levels include:
+
+- ```DEBUG```
+- ```INFO```
+- ```WARN```
+- ```ERROR```
+
+### ```ns <string>```
+Specifies a particular namespace for your log. Good for grouping logs by location in your codebase or by component.
+
+
+### ```node <string>```
+Name of the node, machine, or specific process currently running.
+
+### ```ident <string>```
+A more local identifier for the particular log. This could be something like a user ID to make it easy to trace the actions of a user.
+
+### ```message <string>```
+A human readable message to describe what is happening
+
+### ```data <object>```
+Contextual data related to the this particular log message. If the value of ```data``` is an ```Error()```, the error will be parsed to grab it's message and stack trace and ```data``` will be rewritten to have an ```error``` property that will contain the contents of the ```Error``` object. 
+
+_data, no error_
+
+```
+{
+	data: {
+		someKey: 'someValue'
+	}
+}
+```
+
+_data, with error_
+
+```
+{
+	data: new Error('Some error message')
+}
+
+// will become:
+
+{
+	data: {
+		error: {
+			message: 'Some error message',
+			stack: <stack trace>
+		}
+	}
+}
+```
+
+_data, error and context_
+
+```
+{
+	data: {
+		error: new Error('Some error message'),
+		someKey: 'someValue'
+	}
+}
+
+// will become
+
+{
+	data: {
+		error: {
+			message: 'Some error message',
+			stack: <stack trace>
+		},
+		someKey: 'someValue'
+	}
+}
+```
+
+
+## Custom logging handler
+
+Creating a custom logger is as easy as providing an anonymous function to ```logger.use```.
+
+## Parameters
+
+### ```options```
+Options that you passed in during initialization
+
+```
+	{
+		options: {
+			level: <level to use>
+		}
+	}
+```
+
+
+### ```data```
+The data to be logged
+
+```
+{
+	data: {
+		level: <log level>,
+		ns: <namespace - string>,
+		ident: <custom identifier - string>,
+		node: <node, machine, process, identifier - string>
+		message: <message - string>,
+		data: <custom data - object>
+	}
+}
+```
+
+## Usage
 ```
 var logger = fancyLog.create({
 	level: fancyLog.levels.DEBUG, // default level to log
 });
 
 logger.use(function(options, data){
-	/*
-		options = {
-			level: <default log level, string>
-		};
-
-		data = {
-			level: <log level>,
-			ns: <namespace, string>,
-			ident: <custom identifier, string>,
-			message: <message, string>,
-			data: <custom data, object>
-		};
-	*/
 	
 	// do something with your data
 });

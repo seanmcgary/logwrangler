@@ -51,7 +51,7 @@ logger.log({
 	level: logger.levels.ERROR,
 	ns: 'api',
 	ident: '123456',
-	location: 'some-location',
+	node: 'my test node',
 	message: 'testing error',
 	data: {
 		error: new Error('Im an error object')
@@ -61,13 +61,14 @@ logger.log({
 logger.setOverrides({ 
 	ns: 'some default ns',
 	level: logger.levels.INFO,
-	location: 'datacenter-1'
+	node: 'datacenter-1'
 });
 logger.log({
 	message: 'test'
 });
 
 logger.use(function(options, data){
+	console.log(options);
 	console.log('------------------------\ncustom handler')
 	console.log(data);
 	console.log('------------------------')
