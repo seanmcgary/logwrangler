@@ -1,9 +1,10 @@
-var logwrangler = require('../index');
+var logwrangler = require('../lib/index');
 var logger = logwrangler.create({
 	level: logwrangler.levels.DEBUG,
 });
+console.log(logger);
 
-logger.useModule('myCoolMod', {});
+//logger.useModule('myCoolMod', {});
 
 logger.log({
 	level: logger.levels.INFO,
@@ -13,6 +14,7 @@ logger.log({
 	message: 'some message',
 	data: { key: 'some value' },
 });
+
 
 logger.log({
 	level: logger.levels.ERROR,
@@ -58,28 +60,17 @@ logger.log({
 	}
 });
 
-logger.setOverrides({ 
-	ns: 'some default ns',
-	level: logger.levels.INFO,
-	node: 'datacenter-1'
-});
 logger.log({
 	message: 'test'
 });
 
-logger.use(function(options, data){
-	console.log(options);
-	console.log('------------------------\ncustom handler')
-	console.log(data);
-	console.log('------------------------')
-});
-
-var copy = logger.copy();
+var copy = logger.clone();
 copy.log({
 	message: 'copy'
 });
 logger.log({
 	message: 'original'
 });
+
 
 
