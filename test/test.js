@@ -1,4 +1,4 @@
-var logwrangler = require('../lib/index');
+var logwrangler = require('../');
 var logger = logwrangler.create({
 	level: logwrangler.levels.DEBUG,
 });
@@ -70,6 +70,10 @@ copy.log({
 });
 logger.log({
 	message: 'original'
+});
+
+logger.success({
+	message: 'test shortcut'
 });
 
 
