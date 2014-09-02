@@ -1,6 +1,6 @@
 {
   "name": "logwrangler",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Wrangle up your logging",
   "main": "index.js",
   "repository": {
