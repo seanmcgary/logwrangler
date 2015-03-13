@@ -1,6 +1,8 @@
 var logwrangler = require('../');
 var logger = logwrangler.create({
 	level: logwrangler.levels.DEBUG,
+	colors: true,
+	outputFormat: 'json'
 });
 console.log(logger);
 
@@ -33,6 +35,7 @@ logger.log({
 	data: { key: 'some value' }
 });
 
+
 logger.log({
 	level: logger.levels.DEBUG,
 	ns: 'api',
@@ -60,6 +63,13 @@ logger.log({
 	}
 });
 
+
+
+logger.error({
+	data: new Error('some test error message')
+})
+
+
 logger.log({
 	message: 'test'
 });
@@ -75,6 +85,4 @@ logger.log({
 logger.success({
 	message: 'test shortcut'
 });
-
-
 
