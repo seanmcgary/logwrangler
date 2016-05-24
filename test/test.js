@@ -4,6 +4,7 @@ var logger = logwrangler.create({
 	colors: true,
 	outputFormat: 'json'
 });
+
 console.log(logger);
 
 //logger.useModule('myCoolMod', {});
@@ -67,8 +68,7 @@ logger.log({
 
 logger.error({
 	data: new Error('some test error message')
-})
-
+});
 
 logger.log({
 	message: 'test'
@@ -86,3 +86,8 @@ logger.success({
 	message: 'test shortcut'
 });
 
+const textLogger = logwrangler.create(true);
+
+textLogger.error({
+	message: 'test'
+});
